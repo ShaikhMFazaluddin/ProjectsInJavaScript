@@ -1,0 +1,82 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(31, 31, 31);
+    margin: 0px 0px;
+    padding: 0px 0px;
+    color: white;
+}
+#road {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    height: 640px;
+    width: 600px;
+    border-right: 9px solid rgb(116, 113, 113);
+    border-left: 9px solid rgb(116, 113, 113);
+    background-color: rgb(51, 48, 48);
+}
+#scoreBoard {
+    position: absolute;
+    left: 100;
+    top: 100;
+    color: white;
+}
+#car {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    /* top: 0; */
+    bottom: 30;
+    left: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#carHead {
+    width: 40px;
+    height: 40px;
+    border-radius: 35%;
+    background-color: antiquewhite;
+}
+#carBody {
+    width: 60px;
+    height: 70px;
+    background-color: gray;
+    border-radius: 14%;
+}
+
+.object {
+    width: 80px;
+    height: 60px;
+    border-radius: 40%;
+    position: inherit;
+    top: 10;
+    background-color: aliceblue;
+}
+
+#line {
+    width: 10px;
+    height: 70px;
+    background-color: white;
+}
+.rolling {
+    animation: 2s roll infinite linear;
+}
+
+@keyframes roll {
+    0% {
+        transform: translateY(0px);
+        height: 2px;
+    }
+    2% {
+        height: 100px;
+    }
+    80% {
+        height: 100px;
+    }
+    100% {
+        height: 5px;
+        transform: translateY(630px);
+    }
+}
