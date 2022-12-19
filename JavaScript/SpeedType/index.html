@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>SpeedType</title>
+  <link rel="stylesheet" href="type.css">
+</head>
+<body>
+    <div id="container">
+        <div id="card">
+            <div id="timeDis"></div>
+            <!-- <textarea id="textInput" autofocus> </textarea> -->
+            <div id="displayText">
+                lorem ipsum des hola fine hell this none for nothing
+                <div id="carret"></div>
+            </div>
+            <div id="textInput" contenteditable autofocus spellcheck="false"></div>
+        </div>
+    </div>
+    
+
+    <div id="modal-container" >
+        <div id="words">
+    <div id="word-count">
+    Correct:<span id="correctW">0</span>
+    <br>
+    Mistakes:   <span id="wrongW">0</span>
+    </div> 
+        </div>
+        <div id="modal">
+            <label for="netspeed">WPM:</label>
+            <span id="net">0 </span>
+            <label for="rawSpeed">Raw:</label>
+            <span id="raw">0</span>
+            <br>
+            <label for="accuracy">Accuracy:</label>
+            <span id="accr">0%</span>
+            <div id="buttons">
+                <div id="reset"><span>  &#8634;  </span></div>
+            </div>
+        </div>
+        <div id="modal-close">
+            &times;
+        </div>
+    </div>
+    <div id="overlay"></div>
+  <script src="app.js"></script>
+</body>
+</html>
