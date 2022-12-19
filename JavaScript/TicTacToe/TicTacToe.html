@@ -1,0 +1,180 @@
+<html>
+<head>
+    <title>TIC-TAC-TOE</title>
+    <style>
+        body {
+            background-color: rgb(127, 165, 123);
+            font-size: 30px;
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: rgb(2, 116, 116);
+            padding: 50px 25px;
+        }
+        section {
+            display: flex;
+            justify-content: center;
+        }
+        div {
+            width: 10rem;
+            height: 8rem;
+            text-align: center;
+            font-size: 110px;
+        }
+        label {
+            color: rgb(4, 0, 255);
+        }
+        .right {
+            border-left: solid royalblue 4px;
+        }
+        .left {
+            border-right: solid royalblue 4px;
+        }
+        .bottom {
+            border-top: solid royalblue 4px;
+        }
+        .top {
+            border-bottom: solid royalblue 4px;
+        }
+        #reset {
+            font-size: 18px;
+            margin: 2rem 0rem 1rem 1rem;
+            border-radius: 5em;
+            width: 12rem;
+            height: 2rem;
+            border: 0px;
+        }
+        #reset:hover {
+            cursor: pointer;
+        }
+        .tic {
+            display: flex;
+            flex-direction: row;
+        }
+        .board {
+            width: 500px;
+            height: auto;
+            padding: 6rem;
+        }
+        .score {
+            margin-left: 6em;
+            padding: 2rem;
+            font-size: 28px;
+            color: rgb(0, 0, 0);
+        }
+        @media (max-width: 800px) {
+            .tic {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 800px) {
+        .tic {
+            flex-direction: column;
+         }
+         .score .board{
+            padding: 0;
+         }
+        }
+    </style>
+</head>
+<body> 
+<div class = 'tic'>
+<div class="score">
+    score:
+    <br>
+    x's wins :
+    <label for="x" id="xPoints">0</label>
+    <br>
+    o's wins : 
+    <label for="o" id="oPoints">0</label>
+    <button id="reset" onclick="resetBoard()">Reset Board</button>
+</div>
+<div class="board">
+    <section>
+        <div id=1 class="top left cube" onclick="getid(this)" >  </div>
+        <div id=2 class="top mid cube" onclick="getid(this)">  </div>
+        <div id=3 class="top right cube" onclick="getid(this)">  </div>
+    </section>
+    <section>
+        <div id=4 class="middle left cube" onclick="getid(this)">  </div>
+        <div id=5 class="middle cube" onclick="getid(this)">  </div>
+        <div id=6 class="middle right cube" onclick="getid(this)">  </div>
+    </section>
+    <section>
+        <div id=7 class="bottom left cube" onclick="getid(this)">  </div>
+        <div id=8 class="bottom mid cube" onclick="getid(this)">  </div>
+        <div id=9 class="bottom right cube" onclick="getid(this)">  </div>
+    </section>
+</div>
+</div>
+
+<script>
+  player = 'X';
+  let value = 3;
+  let str = "number"
+  let vis = value + str;
+  console.log(typeof vis);
+  board = [[],[],[]];
+  let xWinCount = 0;
+  let oWinCount = 0;
+  
+  function resetBoard() {
+    board = [[],[],[]];
+    for(let i = 1; i < 10; i++) {
+        document.getElementById(i).innerText = "";
+    }
+  }
+
+  function getid(id) {
+    id = id.id;
+    let row,index,col;
+
+    id >= 7 ? row = 2 : id >= 4 ? row = 1: row = 0;
+    let cel = document.getElementById(id);
+
+    if(cel.innerText === "") {
+        cel.innerText = player;
+        index = Math.floor(Number(id)%3);
+
+        index == 1 ? col = 0 : index == 2 ? col = 1 : col = 2; 
+        player === 'X' ? board[row][col] = 1 : board[row][col] = 2;
+
+        winCheck(board);
+        player == 'X' ? player = 'O' : player = 'X';
+    }
+  }
+
+  function winCheck(array) {
+    for(let i = 0; i < 3; i++) {
+      let rows = array[i]
+      if(rows != "") {
+        rows[0] != rows[1] ? 
+        null : rows[0] != rows[2] ? 
+        null : rows[1] != rows[2] ? 
+        null : (window.alert(player + " is winner"), scoreCount(player), resetBoard());
+      }
+
+      array[0][i] == null ? 
+      null : array[0][i] != array[1][i] ? 
+      null : array[0][i] != array[2][i] ? 
+      null : (scoreCount(player), window.alert(player + " is winner"), resetBoard());
+    }
+    array[0][0] == null ? 
+    null : array[1][1] != array[0][0] ? 
+    null : array[0][0] != array[2][2] ? 
+    null : (scoreCount(player), window.alert(player + " is winner"), resetBoard());
+
+    array[0][2] == null ? 
+    null : array[1][1] != array[0][2] ? 
+    null : array[0][2] != array[2][0] ? 
+    null : (scoreCount(player), window.alert(player + " is winner"), resetBoard());
+  }
+  function scoreCount(player) {
+      
+      player == 'X' ? xWinCount++ : oWinCount++;
+      document.getElementById('xPoints').innerText = xWinCount;
+      document.getElementById('oPoints').innerText = oWinCount;
+  }
+
+</script>
+</body>
+</html>
